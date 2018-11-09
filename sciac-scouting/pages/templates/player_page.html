@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}{{ player.Name }}{% endblock %}
+
+{% block left %}
+	<h2> {{ player.Name }}</h2>
+	<img src= "{% static "images/headshots/" %}{{ player.urlname }}.jpg" height="20%" width="20%">
+{% endblock %}
+
+{% block right %}
+   
+<h1> Scouting Report:</h1>
+<div>
+	Don't have much on this guy. Hits an oppo bomb every single AB. He's pretty good. 
+</div>
+<br>
+<br>
+
+<table class="table table-striped">
+	<thead bgcolor=" {{ team.color }}" class="text-white">
+	    <tr>
+	      <th>Year</th>
+	      <th>Pos</th>
+	      <th>G</th>
+	      <th>AB</th>
+	      <th>R</th>
+	      <th>H</th>
+	      <th>2B</th>
+	      <th>3B</th>
+	      <th>HR</th>
+	      <th>RBI</th>
+	      <th>BB</th>
+	      <th>K</th>
+	      <th>SB</th>
+	      <th>CS</th>
+	      <th>AVG</th>
+	      <th>OBP</th>
+	      <th>SLG</th>
+	      <th>OPS</th>
+	    </tr> 
+  </thead>
+	<tr>
+	<td>{{ player.Year }}</td>
+	<td>{{ player.Position }}</td>
+	<td>{{ player.Games }}</td>
+	<td>{{ player.AB }}</td>
+	<td>{{ player.Runs }}</td>
+	<td>{{ player.Hits }}</td>
+	<td>{{ player.X2B }}</td>
+	<td>{{ player.X3B }}</td>
+	<td>{{ player.HR }}</td>
+	<td>{{ player.RBI }}</td>
+	<td>{{ player.BB }}</td>
+	<td>{{ player.K }}</td>
+	<td>{{ player.SB }}</td>
+	<td>{{ player.CS }}</td>
+	<td>{{ player.AVG }}</td>
+	<td>{{ player.OBP }}</td>
+	<td>{{ player.SLG }}</td>
+	<td>{{ player.OPS }}</td>
+	</tr>
+</table>
+
+<br>
+<br>
+<br>
+{% endblock %}
+
+
+{% block bottom %}
+
+<h1>Spraychart:</h1>
+
+<img src= "{% static "images/spraycharts/" %}{{ player.urlname }}.png" height="50%" width="50%">
+
+
+
+{% endblock %})
+
+

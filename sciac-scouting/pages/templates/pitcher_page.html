@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}{{ pitcher.Name }}{% endblock %}
+
+{% block left %}
+	<h2> {{ pitcher.Name }}</h2>
+	<img src= "{% static "images/headshots/" %}{{ pitcher.urlname }}.jpg" height="20%" width="20%">
+{% endblock %}
+
+{% block right %}
+   
+<h1>Scouting Report:</h1>
+<div>
+	Don't have much on this guy. Stock righty. 82-94mph submarine. Throws from both sides of the rubber with both hands. 
+</div>
+<br>
+<br>
+<table class="table table-striped">
+	<thead bgcolor=" {{ team.color }}" class="text-white">
+	    <tr>
+	      <th>Year</th>
+	      <th>Hand</th>
+	      <th>APP</th>
+	      <th>IP</th>
+	      <th>GS</th>
+	      <th>W</th>
+	      <th>L</th>
+	      <th>SV</th>
+	      <th>CG</th>
+	      <th>H</th>
+	      <th>ER</th>
+	      <th>BB</th>
+	      <th>K</th>
+	      <th>K/9</th>
+	      <th>HR</th>
+	      <th>ERA</th>
+	    </tr> 
+  </thead>
+  <tr>
+  	  <td>{{ pitcher.Year }}</td>
+	  <td>{{ pitcher.Hand }}</td>
+	  <td>{{ pitcher.APP }}</td>
+	  <td>{{ pitcher.IP }}</td>
+	  <td>{{ pitcher.GS }}</td>
+	  <td>{{ pitcher.W }}</td>
+	  <td>{{ pitcher.L }}</td>
+	  <td>{{ pitcher.SV }}</td>
+	  <td>{{ pitcher.CG }}</td>
+	  <td>{{ pitcher.H }}</td>
+	  <td>{{ pitcher.ER }}</td>
+	  <td>{{ pitcher.BB }}</td>
+	  <td>{{ pitcher.K }}</td>
+	  <td>{{ pitcher.K_9 }}</td>
+	  <td>{{ pitcher.HR }}</td>
+	  <td>{{ pitcher.ERA }}</td>
+   </tr>
+</table>
+
+
+{% endblock %}
+
+{% block bottom %}
+
+<h1>Pitches</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			{% for pitch in pitches %}
+				<th>{{ pitch.Type }}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tr>
+		{% for pitch in pitches %}
+		<td style="height: 300px;">
+			<video height="100%" controls>
+  				<source src="{% static "images/pitcher_video/" %}{{ pitcher.urlname }}_{{ pitch.Type }}.mov" type="video/mp4">
+			</video>
+		</td>	
+		{% endfor %}
+	</tr>
+</table>
+
+{% endblock %}
+
+
+

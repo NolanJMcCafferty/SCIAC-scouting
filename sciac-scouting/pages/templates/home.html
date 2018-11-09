@@ -5,10 +5,146 @@
 {% block title %} SCIAC Baseball {% endblock %}
 
 
+{% block left %}
 
-{% block content %}
+<img src= "{% static "images/teams/sciac.png" %}" height="30%" width="25%">
+{% endblock %}
 
-<br>
-Stats
+{% block right %}
+
+<h1> Batting: </h1>
+
+<table id="batting" class="table table-striped table-hover">
+  	<thead class="bg-dark text-white" style="cursor: pointer">
+	    <tr>
+		  <th>Team</th> 
+	      <th onclick="sortTableNums(1, 'batting')">G</th>
+	      <th onclick="sortTableNums(2, 'batting')">AB</th>
+	      <th onclick="sortTableNums(3, 'batting')">R</th>
+	      <th onclick="sortTableNums(4, 'batting')">H</th>
+	      <th onclick="sortTableNums(5, 'batting')">2B</th>
+	      <th onclick="sortTableNums(6, 'batting')">3B</th>
+	      <th onclick="sortTableNums(7, 'batting')">HR</th>
+	      <th onclick="sortTableNums(8, 'batting')">RBI</th>
+	      <th onclick="sortTableNums(9, 'batting')">BB</th>
+	      <th onclick="sortTableNums(10, 'batting')">K</th>
+	      <th onclick="sortTableNums(11, 'batting')">SB</th>
+	      <th onclick="sortTableNums(12, 'batting')">CS</th>
+	      <th onclick="sortTableNums(13, 'batting')">AVG</th>
+	      <th onclick="sortTableNums(14, 'batting')">OBP</th>
+	      <th onclick="sortTableNums(15, 'batting')">SLG</th>
+	      <th onclick="sortTableNums(16, 'batting')">OPS</th>
+	    </tr> 
+  </thead>
+  {% for team in teams %}
+    <tr>
+      <td><a href="{% url 'team' team.urlname %}"><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
+      <td>{{ team.Games }}</td>
+      <td>{{ team.AB }}</td>
+      <td>{{ team.Runs }}</td>
+      <td>{{ team.Hits }}</td>
+      <td>{{ team.X2B }}</td>
+      <td>{{ team.X3B }}</td>
+      <td>{{ team.HR }}</td>
+      <td>{{ team.RBI }}</td>
+      <td>{{ team.BB }}</td>
+      <td>{{ team.K }}</td>
+      <td>{{ team.SB }}</td>
+      <td>{{ team.CS }}</td>
+      <td>{{ team.AVG }}</td>
+      <td>{{ team.OBP }}</td>
+      <td>{{ team.SLG }}</td>
+      <td>{{ team.OPS }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<h1>Pitching:</h1>
+
+<table id="pitching" class="table table-striped table-hover">
+  	<thead class="bg-dark text-white" style="cursor: pointer">
+	    <tr>
+		  <th>Team</th> 
+	      <th onclick="sortTableNums(1, 'pitching')">IP</th>
+	      <th onclick="sortTableNums(2, 'pitching')">H</th>
+	      <th onclick="sortTableNums(3, 'pitching')">ER</th>
+	      <th onclick="sortTableNums(4, 'pitching')">BB</th>
+	      <th onclick="sortTableNums(5, 'pitching')">K</th>
+	      <th onclick="sortTableNums(6, 'pitching')">K/9</th>
+	      <th onclick="sortTableNums(7, 'pitching')">HR</th>
+	      <th onclick="sortTableNums(8, 'pitching')">ERA</th>
+	    </tr> 
+  </thead>
+  {% for team in teams %}
+    <tr>
+      <td><a href="{% url 'team' team.urlname %}"><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
+      <td>{{ team.IP }}</td>
+      <td>{{ team.H_P }}</td>
+      <td>{{ team.ER }}</td>
+      <td>{{ team.BB_P }}</td>
+      <td>{{ team.K_P }}</td>
+      <td>{{ team.K_9_P }}</td>
+      <td>{{ team.HR }}</td>
+      <td>{{ team.ERA }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+
+<script>
+function sortTableNums(n, id) {
+	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	table = document.getElementById(id);
+	switching = true;
+	// Set the sorting direction to ascending:
+	dir = "desc"; 
+	/* Make a loop that will continue until
+	no switching has been done: */
+	while (switching) {
+	  // Start by saying: no switching is done:
+	  switching = false;
+	  rows = table.rows;
+	  /* Loop through all table rows (except the
+	  first, which contains table headers): */
+	  for (i = 1; i < (rows.length - 1); i++) {
+	    // Start by saying there should be no switching:
+	    shouldSwitch = false;
+	    /* Get the two elements you want to compare,
+	    one from current row and one from the next: */
+	    x = rows[i].getElementsByTagName("TD")[n];
+	    y = rows[i + 1].getElementsByTagName("TD")[n];
+
+	    /* Check if the two rows should switch place,
+	    based on the direction, asc or desc: */
+	    if (dir == "asc") {
+	      if (Number(x.innerHTML) > Number(y.innerHTML)) {
+	        shouldSwitch = true;
+	        break;
+	      }
+	    } else if (dir == "desc") {
+	      if (Number(x.innerHTML) < Number(y.innerHTML)) {
+	        shouldSwitch = true;
+	        break;
+	      }
+	    }
+	  }
+	  if (shouldSwitch) {
+	    /* If a switch has been marked, make the switch
+	    and mark that a switch has been done: */
+	    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+	    switching = true;
+	    // Each time a switch is done, increase this count by 1:
+	    switchcount ++; 
+	  } else {
+	    /* If no switching has been done AND the direction is "asc",
+	    set the direction to "desc" and run the while loop again. */
+	    if (switchcount == 0 && dir == "desc") {
+	      dir = "asc";
+	      switching = true;
+	    }
+	  }
+	}
+}
+</script>
 
 {% endblock %}

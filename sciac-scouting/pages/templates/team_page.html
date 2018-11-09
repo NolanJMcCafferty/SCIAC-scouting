@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}{{ team.Name }}{% endblock %}
+
+
+{% block left %}
+
+<img src= "{% static "images/teams/" %}{{ team.Name }}.png" height="20%" width="20%">
+
+
+{% endblock %}
+
+{% block right %}
+  
+<h1> Batting: </h1>
+
+<table id="batting" class="table table-striped table-hover" style="font-size: 15px;">
+  <thead bgcolor="{{ team.color }}" class="text-white" style="cursor: pointer">
+    <tr>
+      <th>Name</th> 
+      <th>Year</th>
+      <th>Pos</th>
+      <th onclick="sortTableNums(3, 'batting')">G</th>
+      <th onclick="sortTableNums(4, 'batting')">AB</th>
+      <th onclick="sortTableNums(5, 'batting')">R</th>
+      <th onclick="sortTableNums(6, 'batting')">H</th>
+      <th onclick="sortTableNums(7, 'batting')">2B</th>
+      <th onclick="sortTableNums(8, 'batting')">3B</th>
+      <th onclick="sortTableNums(9, 'batting')">HR</th>
+      <th onclick="sortTableNums(10, 'batting')">RBI</th>
+      <th onclick="sortTableNums(11, 'batting')">BB</th>
+      <th onclick="sortTableNums(12, 'batting')">K</th>
+      <th onclick="sortTableNums(13, 'batting')">SB</th>
+      <th onclick="sortTableNums(14, 'batting')">CS</th>
+      <th onclick="sortTableNums(15, 'batting')">AVG</th>
+      <th onclick="sortTableNums(16, 'batting')">OBP</th>
+      <th onclick="sortTableNums(17, 'batting')">SLG</th>
+      <th onclick="sortTableNums(18, 'batting')">OPS</th>
+    </tr> 
+  </thead>
+  {% for player in players %}
+    <tr>
+      <td><a href="{% url 'player' team.urlname player.urlname %}"><font color="{{ team.color }}">{{ player.Name }}</font></a></td>
+      <td>{{ player.Year }}</td>
+      <td>{{ player.Position }}</td>
+      <td>{{ player.Games }}</td>
+      <td>{{ player.AB }}</td>
+      <td>{{ player.Runs }}</td>
+      <td>{{ player.Hits }}</td>
+      <td>{{ player.X2B }}</td>
+      <td>{{ player.X3B }}</td>
+      <td>{{ player.HR }}</td>
+      <td>{{ player.RBI }}</td>
+      <td>{{ player.BB }}</td>
+      <td>{{ player.K }}</td>
+      <td>{{ player.SB }}</td>
+      <td>{{ player.CS }}</td>
+      <td>{{ player.AVG }}</td>
+      <td>{{ player.OBP }}</td>
+      <td>{{ player.SLG }}</td>
+      <td>{{ player.OPS }}</td>
+    </tr>
+  {% endfor %}
+    <tr style="font-weight: bold;">
+      <td><b>Totals</b></td>
+      <td></td>
+      <td></td>
+      <td>{{ team.Games }}</td>
+      <td>{{ team.AB }}</td>
+      <td>{{ team.Runs }}</td>
+      <td>{{ team.Hits }}</td>
+      <td>{{ team.X2B }}</td>
+      <td>{{ team.X3B }}</td>
+      <td>{{ team.HR }}</td>
+      <td>{{ team.RBI }}</td>
+      <td>{{ team.BB }}</td>
+      <td>{{ team.K }}</td>
+      <td>{{ team.SB }}</td>
+      <td>{{ team.CS }}</td>
+      <td>{{ team.AVG }}</td>
+      <td>{{ team.OBP }}</td>
+      <td>{{ team.SLG }}</td>
+      <td>{{ team.OPS }}</td>
+    </tr>
+</table>
+
+
+<h1>Pitching:</h1>
+
+<table id="pitching" class="table table-striped table-hover">
+  <thead bgcolor="{{ team.color }}" class="text-white" style="cursor: pointer">
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Hand</th>
+        <th onclick="sortTableNums(3, 'pitching')">APP</th>
+        <th onclick="sortTableNums(4, 'pitching')">IP</th>
+        <th onclick="sortTableNums(5, 'pitching')">GS</th>
+        <th onclick="sortTableNums(6, 'pitching')">W</th>
+        <th onclick="sortTableNums(7, 'pitching')">L</th>
+        <th onclick="sortTableNums(8, 'pitching')">SV</th>
+        <th onclick="sortTableNums(9, 'pitching')">CG</th>
+        <th onclick="sortTableNums(10, 'pitching')">H</th>
+        <th onclick="sortTableNums(11, 'pitching')">ER</th>
+        <th onclick="sortTableNums(12, 'pitching')">BB</th>
+        <th onclick="sortTableNums(13, 'pitching')">K</th>
+        <th onclick="sortTableNums(14, 'pitching')">K/9</th>
+        <th onclick="sortTableNums(15, 'pitching')">HR</th>
+        <th onclick="sortTableNums(16, 'pitching')">ERA</th>
+      </tr> 
+  </thead>
+  {% for pitcher in pitchers %}
+    <tr>
+      <td><a href="{% url 'pitcher' team.urlname pitcher.urlname %}"><font color="{{ team.color }}">{{ pitcher.Name }}</font></a></td>
+      <td>{{ pitcher.Year }}</td>
+      <td>{{ pitcher.Hand }}</td>
+      <td>{{ pitcher.APP }}</td>
+      <td>{{ pitcher.IP }}</td>
+      <td>{{ pitcher.GS }}</td>
+      <td>{{ pitcher.W }}</td>
+      <td>{{ pitcher.L }}</td>
+      <td>{{ pitcher.SV }}</td>
+      <td>{{ pitcher.CG }}</td>
+      <td>{{ pitcher.H }}</td>
+      <td>{{ pitcher.ER }}</td>
+      <td>{{ pitcher.BB }}</td>
+      <td>{{ pitcher.K }}</td>
+      <td>{{ pitcher.K_9 }}</td>
+      <td>{{ pitcher.HR }}</td>
+      <td>{{ pitcher.ERA }}</td>
+    </tr>
+  {% endfor %}
+  <tr style="font-weight: bold;">
+      <td><b>Totals</b></td>
+      <td></td>
+      <td></td>
+      <td>{{ team.APP }}</td>
+      <td>{{ team.IP }}</td>
+      <td>{{ team.GS }}</td>
+      <td>{{ team.W }}</td>
+      <td>{{ team.L }}</td>
+      <td>{{ team.SV }}</td>
+      <td>{{ team.CG }}</td>
+      <td>{{ team.H_P }}</td>
+      <td>{{ team.ER }}</td>
+      <td>{{ team.BB }}</td>
+      <td>{{ team.K }}</td>
+      <td>{{ team.K_9_P }}</td>
+      <td>{{ team.HR }}</td>
+      <td>{{ team.ERA }}</td>
+    </tr>
+</table>
+</table>
+
+
+   <script>
+      function sortTableNums(n, id) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById(id);
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "desc"; 
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+          // Start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /* Loop through all table rows (except the
+          first, which contains table headers): */
+          for (i = 1; i < (rows.length - 2); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+            one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /* Check if the two rows should switch place,
+            based on the direction, asc or desc: */
+            if (dir == "asc") {
+              if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount ++; 
+          } else {
+            /* If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again. */
+            if (switchcount == 0 && dir == "desc") {
+              dir = "asc";
+              switching = true;
+            }
+          }
+        }
+      }  
+</script>
+
+{% endblock %}
+
+
