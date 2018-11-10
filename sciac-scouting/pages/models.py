@@ -83,6 +83,7 @@ class Pitcher(models.Model):
 	K_9 = models.DecimalField(decimal_places=2, max_digits=4, default=.00)
 	HR = models.IntegerField(default=0)
 	ERA = models.DecimalField(decimal_places=2, max_digits=5, default=.00)	
+	Scouting_Report = models.CharField(max_length=1000, default='')
 	def __str__(self):
 		return self.Name
 
