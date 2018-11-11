@@ -60,6 +60,7 @@ class Player(models.Model):
 	OBP = models.DecimalField(decimal_places=3, max_digits=3, default=.000)
 	SLG = models.DecimalField(decimal_places=3, max_digits=3, default=.000)
 	OPS = models.DecimalField(decimal_places=3, max_digits=4, default=.000)
+	Video = models.BooleanField(default=False)
 	def __str__(self):
 		return self.Name
 
@@ -97,10 +98,6 @@ class Pitch(models.Model):
 	Order = models.IntegerField(default=0)
 	def __str__(self):
 		return self.Pitcher.urlname + "_"  + self.Type
-	
-
-
-
 
 
 
