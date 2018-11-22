@@ -19,15 +19,16 @@ def home(request):
 def team_view(request, team):
 	if not request.user.is_authenticated:
 		return redirect('login_view')
-	players = Player.objects.filter(Team__urlname=team)
-	pitchers = Pitcher.objects.filter(Team__urlname=team)
-	the_team = Team.objects.filter(urlname=team)[0]
-	args = {
-		'players': players,
-		'pitchers': pitchers,
-		'team': the_team,
-	}
-	return render(request, "team_page.html", args)
+	else:
+		players = Player.objects.filter(Team__urlname=team)
+		pitchers = Pitcher.objects.filter(Team__urlname=team)
+		the_team = Team.objects.filter(urlname=team)[0]
+		args = {
+			'players': players,
+			'pitchers': pitchers,
+			'team': the_team,
+		}
+		return render(request, "team_page.html", args)
 
 
 def player_view(request, team, player):

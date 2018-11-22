@@ -57,7 +57,7 @@
       <ul class="navbar-nav ml-auto">
         <form class="form-inline my-2 my-lg-0" action="{% url 'logout' %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
         </form>
       </ul>
 </nav>
@@ -70,14 +70,12 @@
     {% block right %}
     {% endblock %}
   </div>
-  <div class="container" style="margin-left:0%;display: inline-block;">
+  <div class="container" style="margin-left:0%;display: inline-block; width: 20%;">
     {% block left %}
     {% endblock %}
   </div>
 
 
-<br>
-<br>
 <br>
 <br>
   <div class="container" style="display: inline-block;">

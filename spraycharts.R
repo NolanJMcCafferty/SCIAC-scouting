@@ -5,7 +5,6 @@ require(png)
 
 field <- readPNG("baseballfieldbnw.png")
 
-
 #Build functions, find.box.scores pulls information from URL
 find.box.scores <- function(website) {
   url <- getURL(website)
@@ -32,8 +31,6 @@ find.box.scores <- function(website) {
   for (i in 1:length(urls.temp)){
     urls[i] <- str_c(urls.temp[i], "?view=plays&inning=1","",sep="")
   }
-
-  print(urls)
   pbp <- list()
   for (i in 1:length(urls)) {
     pbp[[i]] <- getURL(urls[i])
@@ -107,9 +104,9 @@ table.output <- function(dataframe) {
 ### Sample Usage to get table for player
 ####################
 
-website <-"http://www.gocaltech.com/sports/bsb/2017-18/schedule"
+website <-"http://www.sagehens.com/sports/bsb/2017-18/schedule"
 playbyplays <- find.box.scores(website)
-names <- c("Holder")
+names <- c("McCaffert")
 
 plot(c(-1,1), c(0,2), type='n', xlab="", ylab="", xaxt='n', yaxt='n')
 lim <- par()

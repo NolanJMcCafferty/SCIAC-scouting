@@ -7,14 +7,14 @@
 
 {% block left %}
 	<h2> {{ pitcher.Name }}</h2>
-	<img src= "{% static "images/headshots/" %}{{ pitcher.urlname }}.jpg" height="20%" width="20%">
+	<img src= "{% static "images/headshots/" %}{{ pitcher.urlname }}.jpg" width="80%">
 {% endblock %}
 
 {% block right %}
    
 <h1>Scouting Report:</h1>
 <div>
-	Don't have much on this guy. Stock righty. 82-94mph submarine. Throws from both sides of the rubber with both hands. 
+	{{ pitcher.Scouting_Report }}
 </div>
 <br>
 <br>
@@ -59,12 +59,6 @@
    </tr>
 </table>
 
-
-{% endblock %}
-
-{% block bottom %}
-
-<h1>Pitches</h1>
 
 <table class="table">
 	<thead>

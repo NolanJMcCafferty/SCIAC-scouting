@@ -8,14 +8,14 @@
 {% block left %}
 	<h2> {{ player.Name }}</h2>
 	<br>
-	<img src= "{% static "images/headshots/" %}{{ player.urlname }}.jpg" height="20%" width="20%">
+	<img src= "{% static "images/headshots/" %}{{ player.urlname }}.jpg" width="80%">
 {% endblock %}
 
 {% block right %}
    
 <h1> Scouting Report:</h1>
 <div>
-	Don't have much on this guy. Hits an oppo bomb every single AB. He's pretty good. 
+	{{ player.Scouting_Report }}
 </div>
 <br>
 
@@ -89,10 +89,5 @@
 
 
 {% endblock %}
-
-{% block bottom %}
-
-
-{% endblock %})
 
 
