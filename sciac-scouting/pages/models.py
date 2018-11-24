@@ -61,6 +61,7 @@ class Player(models.Model):
 	SLG = models.DecimalField(decimal_places=3, max_digits=3, default=.000)
 	OPS = models.DecimalField(decimal_places=3, max_digits=4, default=.000)
 	Video = models.BooleanField(default=False)
+	Link = models.CharField(max_length=50, default="")
 	Scouting_Report = models.CharField(max_length=5000, default="None available.")
 	def __str__(self):
 		return self.Name
@@ -97,6 +98,7 @@ class Pitch(models.Model):
 	Type = models.CharField(max_length=50, default='')
 	Velocity = models.DecimalField(decimal_places=1, max_digits=4, default=.0)
 	Order = models.IntegerField(default=0)
+	Video = models.CharField(max_length=50, default="")
 	def __str__(self):
 		return self.Pitcher.urlname + "_"  + self.Type
 
