@@ -38,7 +38,7 @@
   </thead>
   {% for team in teams %}
     <tr>
-      <td><a href="{% url 'team' team.urlname %}"><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
+      <td><a href=""><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
       <td>{{ team.Games }}</td>
       <td>{{ team.AB }}</td>
       <td>{{ team.Runs }}</td>
@@ -77,7 +77,7 @@
   </thead>
   {% for team in teams %}
     <tr>
-      <td><a href="{% url 'team' team.urlname %}"><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
+      <td><a href=""><font color="{{ team.color }}">{{ team.Name }}</font></a></td>
       <td>{{ team.IP }}</td>
       <td>{{ team.H_P }}</td>
       <td>{{ team.ER }}</td>
