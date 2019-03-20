@@ -32,7 +32,7 @@ class Team(models.Model):
 	ER = models.IntegerField(default=0)
 	BB_P = models.IntegerField(default=0)
 	K_P = models.IntegerField(default=0)
-	K_9_P = models.DecimalField(decimal_places=2, max_digits=3, default=.00)
+	K_9_P = models.DecimalField(decimal_places=2, max_digits=4, default=.00)
 	HR_P = models.IntegerField(default=0)
 	ERA = models.DecimalField(decimal_places=2, max_digits=5, default=.00)
 	def __str__(self):
